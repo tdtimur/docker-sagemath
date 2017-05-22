@@ -1,4 +1,4 @@
-# Sage on Docker
+# Sage 7.6 on Docker
 This image runs SageMath Notebook Server (SageNB and Jupyter) on Docker
 ## Usage
 Currently there are two notebooks being used in SageMath; SageNB and Jupyter.
