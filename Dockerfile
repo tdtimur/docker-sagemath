@@ -4,6 +4,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends sudo bzip2 wget
 RUN adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-password sage \
     && chown -R sage:sage /home/sage/ \
+    && chown -R sage:sage /opt/ \
     && echo "sage ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER sage
 RUN sudo apt-get install -y --no-install-recommends \
