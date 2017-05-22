@@ -14,7 +14,7 @@ RUN sudo apt-get install -y --no-install-recommends \
     libpython2.7 \
     gfortran
 WORKDIR /home/sage
-RUN wget http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 -O ./sage.tar.bz2 \
+RUN wget -q http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 -O ./sage.tar.bz2 \
     && tar xvjf ./sage.tar.bz2 \
     && mv ./SageMath ./sagemath \
     && rm -f ./sage.tar.bz2
