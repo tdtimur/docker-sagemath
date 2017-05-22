@@ -15,9 +15,9 @@ RUN sudo apt-get install -y --no-install-recommends \
     gfortran
 WORKDIR /home/sage
 RUN wget -q http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 -O ./sage.tar.bz2 \
-    && tar xvjf ./sage.tar.bz2 \
-    && mv ./SageMath ./sagemath \
-    && rm -f ./sage.tar.bz2
+    && tar xvjf ./sage.tar.bz2
+RUN rm -f ./sage.tar.bz2
+RUN mv ./SageMath ./sagemath
 COPY ./sagenb.sh ./
 COPY ./jupyter.sh ./
 RUN sudo ln -s /home/sage/sagemath/sage /usr/local/bin/ \
