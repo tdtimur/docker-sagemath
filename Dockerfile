@@ -1,13 +1,13 @@
 FROM debian:8.8
 ENV VER 7.6
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends sudo bzip2 wget
+RUN apt-get -qq update \
+    && apt-get -qq install -y --no-install-recommends sudo bzip2 wget
 RUN adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-password sage \
     && chown -R sage:sage /home/sage/ \
     && chown -R sage:sage /opt/ \
     && echo "sage ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER sage
-RUN sudo apt-get install -y --no-install-recommends \
+RUN sudo apt-get -qq install -y --no-install-recommends \
     nano \
     curl \
     python \
@@ -15,8 +15,9 @@ RUN sudo apt-get install -y --no-install-recommends \
     libpython2.7 \
     gfortran
 WORKDIR /home/sage
-RUN wget -q http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 -O ./sage.tar.bz2 \
-    && tar xvjf ./sage.tar.bz2
+RUN wget -q http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 \
+    -O ./sage.tar.bz2 \
+    && tar xjf ./sage.tar.bz2
 RUN rm -f ./sage.tar.bz2
 COPY ./sagenb.sh ./
 COPY ./jupyter.sh ./
