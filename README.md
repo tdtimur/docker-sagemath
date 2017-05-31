@@ -44,3 +44,5 @@ Run `sage -h` to print help message for Sage CLI. If you want to install a packa
 
 # What This Is **NOT**
 This container image is not intended for production use e.g. to be used as server in school or university where there are real people with real work using it. Please use it for personal work only e.g. on our own laptop.
+# Does Not Work On Windows 7
+I've only tested this image on Docker Toolbox for Windows 7 64-bit, got "New state of 'nil' is invalid" error. I'm still working on workarounds.
