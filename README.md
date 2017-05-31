@@ -26,7 +26,7 @@ To run Jupyter Notebook, execute the following command:
 
 To persist your Sage Jupyter Notebook data, run:
 
-```docker run -it -p 8888:8888 —name=jupyter -v $(pwd)/jupyter_data:/opt/jupyter —entrypoint=‘/jupyter.sh’ tdtimur/sagenb:<tag>```
+```docker run -it -p 8888:8888 —name=jupyter -v $(pwd)/jupyter_data:/opt/jupyter —entrypoint=‘/jupyter.sh’ tdtimur/sagemath:<tag>```
 
 This command will create directory `jupyter_data` inside your working directory, and mount it to `/opt/jupyter where Jupyter set to store its data.
 
