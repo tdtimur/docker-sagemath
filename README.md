@@ -2,7 +2,7 @@
 This image runs SageMath Notebook Server (SageNB and Jupyter) on Docker
 
 ## Usage
-Currently there are two notebooks being used in SageMath; SageNB and Jupyter.
+Currently there are two notebooks being used in SageMath, namely SageNB and Jupyter.
 
 ### SageNB Notebook
 To run SageMath (Old) Notebook Server, just execute the following command:
