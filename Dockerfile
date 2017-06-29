@@ -25,7 +25,9 @@ COPY ./sagenb.sh ./
 COPY ./jupyter.sh ./
 RUN sudo ln -s /home/sage/SageMath/sage /usr/local/bin/ \
     && sudo chmod +x ./sagenb.sh \
-    && sudo chmod +x ./jupyter.sh
+    && sudo chmod +x ./jupyter.sh \
+    && rm SageMath/local/etc/jupyter/jupyter_notebook_config.py
+COPY ./jupyter_notebook_config.py SageMath/local/etc/jupyter/
 RUN sage -pip install --upgrade pip && \
     sage -pip install octave_kernel scilab_kernel && \
     sage -python -m octave_kernel.install && \
