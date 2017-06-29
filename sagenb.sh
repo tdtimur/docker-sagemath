@@ -1,2 +1,2 @@
 #!/bin/bash
-sage -c 'notebook(interface="", directory="/opt/sage_notebook.sagenb", accounts=False, port=8080)'
+sage -c 'notebook(interface="", directory="/home/sage/sage_notebook.sagenb", accounts=True, port=8080)'

@@ -13,7 +13,7 @@ To run SageMath (Old) Notebook Server, just execute the following command:
 
 To persist your notebook data, run the following command:
 
-```docker run -it -p 8080:8080 --name=sagenb -v $(pwd)/sage_data:/opt/sage_notebook.sagenb tdtimur/sagemath:<tag>```
+```docker run -it -p 8080:8080 --name=sagenb -v $(pwd)/sage_data:/home/sage/sage_notebook.sagenb tdtimur/sagemath:<tag>```
 
 This command will create directory `sage_data` inside your working directory, and mount it to `/opt/sage_notebook.sagenb` where SageNB stores your data.
 
@@ -26,7 +26,7 @@ To run Jupyter Notebook, execute the following command:
 
 To persist your Sage Jupyter Notebook data, run:
 
-```docker run -it -p 8888:8888 —name=jupyter -v $(pwd)/jupyter_data:/opt/jupyter —entrypoint=‘/jupyter.sh’ tdtimur/sagemath:<tag>```
+```docker run -it -p 8888:8888 —name=jupyter -v $(pwd)/jupyter_data:/home/sage/jupyter —entrypoint=‘/jupyter.sh’ tdtimur/sagemath:<tag>```
 
 This command will create directory `jupyter_data` inside your working directory, and mount it to `/opt/jupyter where Jupyter set to store its data.
 
