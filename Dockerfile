@@ -2,7 +2,7 @@ FROM debian:8.8
 ENV VER 7.6
 ENV PASSWORD pass1234
 RUN apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends sudo bzip2 wget
+    && apt-get -qq install -y --no-install-recommends sudo bzip2 wget octave scilab gnuplot
 RUN adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-password sage \
     && chown -R sage:sage /home/sage/ \
     && chown -R sage:sage /opt/ \
@@ -26,5 +26,9 @@ COPY ./jupyter.sh ./
 RUN sudo ln -s /home/sage/SageMath/sage /usr/local/bin/ \
     && sudo chmod +x ./sagenb.sh \
     && sudo chmod +x ./jupyter.sh
+RUN sage -pip install --upgrade pip && \
+    sage -pip install octave_kernel scilab_kernel && \
+    sage -python -m octave_kernel.install && \
+    sage -python -m scilab_kernel.install
 EXPOSE 8080 8888
 ENTRYPOINT ["./sagenb.sh"]
