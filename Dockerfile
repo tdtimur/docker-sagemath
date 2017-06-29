@@ -1,5 +1,6 @@
 FROM debian:8.8
 ENV VER 7.6
+ENV PASSWORD pass1234
 RUN apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends sudo bzip2 wget
 RUN adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-password sage \
@@ -13,7 +14,8 @@ RUN sudo apt-get -qq install -y --no-install-recommends \
     python \
     python-pip \
     libpython2.7 \
-    gfortran
+    gfortran \
+    && sudo apt-get -y clean
 WORKDIR /home/sage
 RUN wget -q http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 \
     -O ./sage.tar.bz2 \
