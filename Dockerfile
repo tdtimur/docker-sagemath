@@ -15,7 +15,7 @@ RUN sudo apt-get -qq install -y --no-install-recommends \
     python-pip \
     libpython2.7 \
     gfortran \
-    && sudo apt-get -y clean
+    && sudo apt-get -y clean && sudo apt-get autoremove
 WORKDIR /home/sage
 RUN wget -q http://ftp.yz.yamagata-u.ac.jp/pub/math/sage/linux/64bit/sage-${VER}-Debian_GNU_Linux_8-x86_64.tar.bz2 \
     -O ./sage.tar.bz2 \
@@ -25,12 +25,7 @@ COPY ./sagenb.sh ./
 COPY ./jupyter.sh ./
 RUN sudo ln -s /home/sage/SageMath/sage /usr/local/bin/ \
     && sudo chmod +x ./sagenb.sh \
-    && sudo chmod +x ./jupyter.sh \
-    && rm SageMath/local/etc/jupyter/jupyter_notebook_config.py
-COPY ./jupyter_notebook_config.py SageMath/local/etc/jupyter/
-RUN sage -pip install --upgrade pip && \
-    sage -pip install octave_kernel scilab_kernel && \
-    sage -python -m octave_kernel.install && \
-    sage -python -m scilab_kernel.install
+    && sudo chmod +x ./jupyter.sh
+COPY ./jupyter_notebook_config.py ./
 EXPOSE 8080 8888
 ENTRYPOINT ["./sagenb.sh"]
