@@ -27,5 +27,10 @@ RUN sudo ln -s /home/sage/SageMath/sage /usr/local/bin/ \
     && sudo chmod +x ./sagenb.sh \
     && sudo chmod +x ./jupyter.sh
 COPY ./jupyter_notebook_config.py ./
+RUN sage -pip install --upgrade pip && \
+    sage -pip install octave_kernel scilab_kernel && \
+    sage -python -m octave_kernel.install && \
+    sage -python -m scilab_kernel.install && \
+    mkdir /home/sage/jupyter
 EXPOSE 8080 8888
 ENTRYPOINT ["./sagenb.sh"]
