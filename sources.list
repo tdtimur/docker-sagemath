@@ -1,0 +1,3 @@
+deb http://kartolo.sby.datautama.net.id/debian/ jessie main contrib non-free
+deb http://kartolo.sby.datautama.net.id/debian/ jessie-updates main contrib non-free
+deb http://kartolo.sby.datautama.net.id/debian/ jessie-backports main contrib non-free
