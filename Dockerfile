@@ -1,11 +1,11 @@
 FROM debian:8.8
 ENV VER 8.0
 ENV PASSWORD pass1234
+COPY ./sources.list /etc/apt/
 RUN apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends sudo bzip2 wget octave scilab gnuplot
+    && apt-get -qq install -y --no-install-recommends sudo bzip2 wget octave scilab gnuplot git
 RUN adduser --quiet --shell /bin/bash --gecos "Sage user,101,," --disabled-password sage \
     && chown -R sage:sage /home/sage/ \
-    && chown -R sage:sage /opt/ \
     && echo "sage ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER sage
 RUN sudo apt-get -qq install -y --no-install-recommends \
@@ -25,12 +25,14 @@ COPY ./sagenb.sh ./
 COPY ./jupyter.sh ./
 RUN sudo ln -s /home/sage/SageMath/sage /usr/local/bin/ \
     && sudo chmod +x ./sagenb.sh \
-    && sudo chmod +x ./jupyter.sh
-COPY ./jupyter_notebook_config.py ./
+    && sudo chmod +x ./jupyter.sh \
+    && sudo chmod -R 777 /home/sage/ \
+    && mkdir /home/sage/jupyter
+COPY ./jupyter_notebook_config.py /home/sage/SageMath/local/etc/jupyter/
 RUN sage -pip install --upgrade pip && \
     sage -pip install octave_kernel scilab_kernel && \
     sage -python -m octave_kernel.install && \
     sage -python -m scilab_kernel.install && \
-    mkdir /home/sage/jupyter
+    sage -pip install opencv-python
 EXPOSE 8080 8888
 ENTRYPOINT ["./sagenb.sh"]
