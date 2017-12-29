@@ -1,5 +1,5 @@
 FROM debian:8.8
-ENV VER 8.0
+ENV VER 8.1
 ENV PASSWORD pass1234
 COPY ./sources.list /etc/apt/
 RUN apt-get -qq update \
@@ -26,9 +26,12 @@ COPY ./jupyter.sh ./
 RUN sudo ln -s /home/sage/SageMath/sage /usr/local/bin/ \
     && sudo chmod +x ./sagenb.sh \
     && sudo chmod +x ./jupyter.sh \
+    && sudo chown -R sage:sage /home/sage/ \
     && sudo chmod -R 777 /home/sage/ \
-    && mkdir /home/sage/jupyter
+    && mkdir /home/sage/jupyter \
+    && mkdir /home/sage/.jupyter
 COPY ./jupyter_notebook_config.py /home/sage/SageMath/local/etc/jupyter/
+COPY ./jupyter_notebook_config.py /home/sage/.jupyter/
 RUN sage -pip install --upgrade pip && \
     sage -pip install octave_kernel scilab_kernel && \
     sage -python -m octave_kernel.install && \
