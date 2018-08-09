@@ -1,5 +1,5 @@
 FROM debian:8.8
-ENV VER 8.1
+ENV VER 8.3
 ENV PASSWORD pass1234
 RUN apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends sudo bzip2 wget
